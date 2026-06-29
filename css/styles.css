@@ -1,5 +1,20 @@
 /* Hand-written CSS. Loaded AFTER Bootstrap so these rules can override it. */
 
+/* ─── Coffee colour palette ──────────────────────────────────────────────────
+   All colour values live here. Rules elsewhere reference only var(--cb-*).
+   Two caramel tokens are needed because a single mid-range hue cannot satisfy
+   WCAG AA (4.5:1) against both a near-black background and white — a known
+   constraint of medium hues against extreme surfaces.
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --cb-espresso:     #2C1503;   /* deep espresso  — navbar + footer bg          */
+  --cb-espresso-rim: #3D2010;   /* mid-brown      — borders/separators on dark  */
+  --cb-latte:        #F5EAD0;   /* warm cream     — light section/card accent   */
+  --cb-caramel:      #C8813A;   /* golden caramel — hover + accents on dark bg  */
+  --cb-mocha:        #7A4A1E;   /* darker sibling — links + headings on light bg (WCAG AA 6.6:1 on white) */
+  --cb-cream:        #F0DFC0;   /* warm off-white — text + links on dark bg     */
+}
+
 /* ─── Sticky footer via Flexbox column ───────────────────────────────────────
    The body becomes a full-viewport column flex container.
    <main> takes flex: 1 so it stretches to fill whatever height is left over
@@ -24,26 +39,46 @@ main {
   letter-spacing: 0.03em;
 }
 
+/* Bootstrap applies !important on .bg-dark, so we must match it to override. */
+.navbar.bg-dark {
+  background-color: var(--cb-espresso) !important;
+}
+
 /* ─── Site footer ────────────────────────────────────────────────────────── */
 .site-footer {
   flex-shrink: 0;
-  background-color: #212529;
-  color: #adb5bd;
-  border-top: 1px solid #343a40;
+  background-color: var(--cb-espresso);
+  color: var(--cb-cream);
+  border-top: 1px solid var(--cb-espresso-rim);
   font-size: 0.9rem;
 }
 
 .site-footer a {
-  color: #adb5bd;
+  color: var(--cb-cream);
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .site-footer a:hover,
 .site-footer a:focus {
-  color: #ffffff;
+  color: var(--cb-caramel);
 }
 
 .site-footer address {
   font-style: normal;
+}
+
+/* ─── Headings ───────────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  color: var(--cb-mocha);
+}
+
+/* ─── Body links ─────────────────────────────────────────────────────────── */
+main a {
+  color: var(--cb-mocha);
+}
+
+main a:hover,
+main a:focus {
+  color: var(--cb-espresso);
 }
