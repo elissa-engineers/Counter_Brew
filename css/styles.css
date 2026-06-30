@@ -173,3 +173,123 @@ main a:focus {
   font-size: 3rem;
   color: var(--cb-caramel);
 }
+
+/* ─── Explore page — disclaimer note ────────────────────────────────────── */
+.explore-disclaimer {
+  font-size: 0.875rem;
+  color: var(--cb-mocha);
+  opacity: 0.8;
+}
+
+/* ─── Explore page — search bar ──────────────────────────────────────────── */
+.explore-search-bar {
+  background-color: var(--cb-latte);
+  border: 1px solid var(--cb-espresso-rim);
+}
+
+.explore-search-btn {
+  background-color: var(--cb-espresso);
+  color: var(--cb-cream);
+}
+
+.explore-search-btn:hover,
+.explore-search-btn:focus {
+  background-color: var(--cb-espresso-rim);
+  color: var(--cb-cream);
+}
+
+/* ─── Explore page — status line ─────────────────────────────────────────── */
+.explore-status {
+  font-size: 0.875rem;
+  color: var(--cb-mocha);
+}
+
+/* ─── Explore page — loading spinner ─────────────────────────────────────── */
+.explore-spinner {
+  color: var(--cb-caramel);
+}
+
+.explore-spinner .spinner-border {
+  color: var(--cb-caramel);
+}
+
+/* ─── Explore page — error state ─────────────────────────────────────────── */
+.explore-error {
+  background-color: var(--cb-latte);
+  border: 1px solid var(--cb-espresso-rim);
+  color: var(--cb-espresso);
+}
+
+/* ─── Explore page — recipe cards ────────────────────────────────────────── */
+.explore-card__img {
+  height: 180px;
+  object-fit: cover;
+}
+
+.explore-card__img-placeholder {
+  height: 180px;
+  background-color: var(--cb-latte);
+  color: var(--cb-caramel);
+  font-size: 3rem;
+}
+
+.explore-card__title {
+  color: var(--cb-mocha);
+  font-size: 1rem;
+}
+
+.explore-card__view-btn {
+  border-color: var(--cb-mocha);
+  color: var(--cb-mocha);
+}
+
+.explore-card__view-btn:hover,
+.explore-card__view-btn:focus {
+  background-color: var(--cb-mocha);
+  color: var(--cb-cream);
+}
+
+/* ─── Explore page — load more button ────────────────────────────────────── */
+.explore-load-more-btn {
+  background-color: var(--cb-latte);
+  border: 1px solid var(--cb-espresso-rim);
+  color: var(--cb-mocha);
+  padding: 0.5rem 2rem;
+}
+
+.explore-load-more-btn:hover,
+.explore-load-more-btn:focus {
+  background-color: var(--cb-espresso);
+  color: var(--cb-cream);
+  border-color: var(--cb-espresso);
+}
+
+/* ─── Recipe detail modal ────────────────────────────────────────────────── */
+.recipe-modal__title {
+  color: var(--cb-mocha);
+}
+
+.recipe-section-heading {
+  color: var(--cb-mocha);
+  font-weight: 700;
+  border-bottom: 1px solid var(--cb-espresso-rim);
+  padding-bottom: 0.25rem;
+}
+
+.recipe-ingredients {
+  font-size: 0.9rem;
+  padding-left: 1.25rem;
+}
+
+.recipe-ingredients li + li {
+  margin-top: 0.2rem;
+}
+
+.recipe-instructions {
+  font-size: 0.9rem;
+  padding-left: 1.25rem;
+}
+
+.recipe-instructions li + li {
+  margin-top: 0.4rem;
+}
