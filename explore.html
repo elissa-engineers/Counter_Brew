@@ -39,9 +39,68 @@
 
   <main class="container py-5">
     <h1>Explore Recipes</h1>
-    <p>Search the Spoonacular database for coffee and café-style drink recipes.</p>
-    <!-- Search box, results, pagination, loading/error/empty states go here -->
+    <p class="lead mb-2">Browse coffee-flavoured recipes and desserts from the Spoonacular database — bakes, sweets, and treats built around coffee.</p>
+    <p class="explore-disclaimer mb-4">Counter Brew's home drinks live on the Browse page. Here you can explore the wider world of coffee-flavoured cooking.</p>
+
+    <!-- Search form -->
+    <form id="explore-form" class="explore-search-bar d-flex gap-2 mb-4 p-3 rounded">
+      <input id="explore-input" type="search" class="form-control"
+             placeholder="Try coffee, mocha, tiramisu…"
+             aria-label="Search recipes" />
+      <button type="submit" class="btn explore-search-btn flex-shrink-0">
+        <i class="bi bi-search"></i> Search
+      </button>
+    </form>
+
+    <!-- Result count -->
+    <p id="explore-status" class="explore-status mb-3"></p>
+
+    <!-- Loading state -->
+    <div id="explore-loading" class="explore-spinner text-center py-5" hidden>
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Searching…</span>
+      </div>
+      <p class="mt-2 mb-0">Searching recipes…</p>
+    </div>
+
+    <!-- Error state -->
+    <div id="explore-error" class="explore-error p-4 rounded mb-4" hidden>
+      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+      <span class="explore-error__msg"></span>
+    </div>
+
+    <!-- Empty state -->
+    <div id="explore-empty" class="empty-state text-center py-5" hidden>
+      <i class="bi bi-search empty-state__icon d-block mb-3"></i>
+      <p class="lead mb-1">No recipes found.</p>
+      <p class="text-muted mb-0">Try a different search term.</p>
+    </div>
+
+    <!-- Results grid -->
+    <div id="explore-grid" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"></div>
+
+    <!-- Pagination -->
+    <div id="explore-pagination" class="text-center mt-4" hidden>
+      <button id="load-more" class="btn explore-load-more-btn">
+        Load more results <i class="bi bi-chevron-down"></i>
+      </button>
+    </div>
   </main>
+
+  <!-- Recipe detail modal -->
+  <div class="modal fade" id="recipe-modal" tabindex="-1"
+       aria-labelledby="recipe-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title recipe-modal__title" id="recipe-modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="recipe-modal-body"></div>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container d-flex flex-wrap justify-content-between align-items-center py-3">
