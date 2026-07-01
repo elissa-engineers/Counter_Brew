@@ -145,6 +145,8 @@ main {
   color: var(--cb-cream);
   text-decoration: none;
   transition: color 0.15s ease;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 .footer-contact a:hover,
