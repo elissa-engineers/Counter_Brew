@@ -17,6 +17,8 @@
 
   --cb-font-heading: 'Fraunces', Georgia, serif;
   --cb-font-body:    'Nunito Sans', system-ui, sans-serif;
+
+  --cb-navbar-height: 76px;     /* 60px logo + Bootstrap's default 0.5rem navbar padding-y (top+bottom) */
 }
 
 /* ─── Sticky footer via Flexbox column ───────────────────────────────────────
@@ -72,6 +74,29 @@ main {
 /* Bootstrap applies !important on .bg-dark, so we must match it to override. */
 .navbar.bg-dark {
   background-color: var(--cb-espresso) !important;
+}
+
+/* ─── Home page — transparent navbar over hero ───────────────────────────────
+   Floats the navbar out of normal flow so the hero photo shows through behind
+   it. The bar itself stays transparent at every width, including mobile; only
+   the opened hamburger menu (.navbar-collapse.show) gets a solid espresso
+   backing so links stay readable once it drops down over the hero image.
+   ─────────────────────────────────────────────────────────────────────────── */
+.navbar-transparent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+}
+
+.navbar.bg-dark.navbar-transparent {
+  background-color: transparent !important;
+  border-bottom: none;
+}
+
+.navbar-transparent .navbar-collapse.show {
+  background-color: var(--cb-espresso);
 }
 
 /* ─── Site footer ────────────────────────────────────────────────────────── */
@@ -209,7 +234,7 @@ main a:focus {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 3rem 1rem 5rem; /* extra bottom padding so content clears the wave */
+  padding: calc(3rem + var(--cb-navbar-height)) 1rem 5rem; /* top padding clears the absolutely-positioned transparent navbar; extra bottom padding so content clears the wave */
 }
 
 /* Concave SVG wave that melts the dark hero into the white section below.
@@ -378,6 +403,58 @@ main a:focus {
   background-color: var(--cb-caramel);
   border-color: var(--cb-caramel);
   color: var(--cb-espresso);
+}
+
+/* ─── Browse page — tutorials section ───────────────────────────────────── */
+.tutorial-card {
+  border: 1px solid var(--cb-espresso-rim);
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tutorial-card:hover,
+.tutorial-card:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(var(--cb-espresso-rgb), 0.18);
+  border-color: var(--cb-caramel);
+  color: inherit;
+}
+
+.tutorial-thumb-wrap {
+  position: relative;
+}
+
+.tutorial-thumb-wrap img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.tutorial-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(var(--cb-espresso-rgb), 0.65);
+  color: var(--cb-cream);
+  font-size: 1.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.tutorial-card:hover .tutorial-play-icon {
+  background-color: var(--cb-caramel);
+}
+
+.tutorial-title {
+  color: var(--cb-mocha);
+  font-size: 0.95rem;
 }
 
 /* ─── Drink cards ────────────────────────────────────────────────────────── */
