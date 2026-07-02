@@ -361,6 +361,25 @@ main a:focus {
   min-width: 9rem;
 }
 
+.filter-bar select.form-select {
+  transition: border-color 0.2s ease;
+}
+
+.filter-bar select.form-select:hover {
+  border-color: var(--cb-caramel);
+  cursor: pointer;
+}
+
+#filter-reset {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+#filter-reset:hover {
+  background-color: var(--cb-caramel);
+  border-color: var(--cb-caramel);
+  color: var(--cb-espresso);
+}
+
 /* ─── Drink cards ────────────────────────────────────────────────────────── */
 .drink-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;

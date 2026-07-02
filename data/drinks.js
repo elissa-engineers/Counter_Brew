@@ -19,7 +19,7 @@ export const drinks = [
   },
   {
     id: "home-latte",
-    name: "Home Latte",
+    name: "Latte",
     brewMethod: "moka pot",
     temp: "hot",
     milk: "steamed milk",
@@ -36,7 +36,7 @@ export const drinks = [
   },
   {
     id: "home-cappuccino",
-    name: "Home Cappuccino",
+    name: "Cappuccino",
     brewMethod: "moka pot",
     temp: "hot",
     milk: "frothed milk",
@@ -53,7 +53,7 @@ export const drinks = [
   },
   {
     id: "home-cortado",
-    name: "Home Cortado",
+    name: "Cortado",
     brewMethod: "moka pot",
     temp: "hot",
     milk: "warm milk",
@@ -138,7 +138,7 @@ export const drinks = [
   },
   {
     id: "pour-over",
-    name: "Pour-Over (V60)",
+    name: "Pour-Over",
     brewMethod: "pour-over",
     temp: "hot",
     milk: "none",
@@ -172,7 +172,7 @@ export const drinks = [
   },
   {
     id: "ca-phe-sua-da",
-    name: "Cà Phê Sữa Đá",
+    name: "Cà Phê Sữa Đá (Vietnamese)",
     brewMethod: "pour-over",
     temp: "iced",
     milk: "sweetened condensed milk",
