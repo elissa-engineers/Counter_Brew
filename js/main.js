@@ -32,7 +32,7 @@ if (featuredEl) {
             <p class="card-text home-featured-notes">${teaser}</p>
           </div>
           <div class="card-footer bg-transparent border-0 pb-3">
-            <a href="drinks.html" class="btn btn-sm home-featured-btn w-100">
+            <a href="drinks.html#${d.id}" class="btn btn-sm home-featured-btn w-100">
               See how to make it
             </a>
           </div>
@@ -44,7 +44,28 @@ if (featuredEl) {
 // Browse page — only runs when #drink-grid exists
 const grid = document.getElementById('drink-grid');
 if (grid) {
-  new DrinkList(grid, drinks).init();
+  new DrinkList(grid, drinks).init(() => scrollToHashDrink());
+}
+
+// After the Browse page's initial render, expand and scroll to a drink
+// linked via drinks.html#<drink-id> (e.g. from a Home featured card).
+function scrollToHashDrink() {
+  const id = window.location.hash.slice(1);
+  if (!id) return;
+
+  const cardEl = document.getElementById(id);
+  if (!cardEl) return;
+
+  try {
+    const collapseEl = cardEl.querySelector('.collapse');
+    if (collapseEl) {
+      bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false }).show();
+    }
+  } catch {
+    // expand failed — still scroll to the card below
+  }
+
+  cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 // Explore page — dynamic imports keep config.js absence from breaking Browse

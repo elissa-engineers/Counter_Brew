@@ -15,7 +15,7 @@ export class DrinkList {
     this.#drinks     = allDrinks;
   }
 
-  init() {
+  init(onReady) {
     document.getElementById('filter-temp')
       .addEventListener('change', e => { this.#filters.temp = e.target.value; this.#render(); });
     document.getElementById('filter-brewMethod')
@@ -32,6 +32,7 @@ export class DrinkList {
       .addEventListener('click', e => this.#handleFavoriteClick(e));
     this.#updateFavoritesCount();
     this.#render();
+    onReady?.();
   }
 
   #resetFilters() {
@@ -83,7 +84,7 @@ export class DrinkList {
     const starIcon = isFavorited ? 'bi-star-fill' : 'bi-star';
 
     return `
-      <div class="col drink-card-enter" style="animation-delay:${index * 35}ms">
+      <div class="col drink-card-enter" id="${drink.id}" style="animation-delay:${index * 35}ms">
         <div class="card drink-card h-100">
           <div class="card-header d-flex flex-wrap gap-2 align-items-center">
             <span class="badge drink-badge--temp">
