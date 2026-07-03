@@ -447,18 +447,56 @@ main a:focus {
 }
 
 /* ─── Browse page — jump to tutorials ────────────────────────────────────── */
-.jump-to-tutorials {
-  font-size: 0.9rem;
-  color: var(--cb-mocha);
-  text-decoration: none;
-  border-bottom: 1px dashed var(--cb-mocha);
-  transition: color 0.15s ease, border-color 0.15s ease;
+/* Desktop order: heading + button share the top row, description wraps
+   below full-width (its order puts it after the button, but flex-basis:100%
+   forces it onto its own line regardless of order position). */
+.browse-heading-row {
+  column-gap: 1.5rem;
+  row-gap: 0.75rem;
 }
 
-.jump-to-tutorials:hover,
-.jump-to-tutorials:focus {
-  color: var(--cb-caramel);
-  border-color: var(--cb-caramel);
+.browse-heading-row h1 {
+  order: 1;
+}
+
+.browse-heading-row__desc {
+  order: 3;
+  flex: 1 1 100%;
+}
+
+.jump-to-tutorials-btn {
+  order: 2;
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background-color: var(--cb-caramel);
+  color: var(--cb-espresso);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--cb-caramel);
+  border-radius: 999px;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.jump-to-tutorials-btn:hover,
+.jump-to-tutorials-btn:focus {
+  background-color: var(--cb-mocha);
+  border-color: var(--cb-mocha);
+  color: var(--cb-cream);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 575.98px) {
+  /* Mobile stacking order: heading -> description -> button */
+  .browse-heading-row__desc {
+    order: 2;
+  }
+
+  .jump-to-tutorials-btn {
+    order: 3;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* ─── Browse page — tutorials section ───────────────────────────────────── */
