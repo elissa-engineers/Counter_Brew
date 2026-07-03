@@ -52,7 +52,7 @@ It is implemented as a **sticky footer** using a Flexbox column layout on the pa
 - Google Fonts (Fraunces for headings, Nunito Sans for body)
 - Spoonacular API for live data
 - Deployed on GitHub Pages
-Client-side state is handled with localStorage (the favorites feature persists across sessions), and interactivity is built with ES6 classes throughout — no jQuery or external JS libraries.
+- Client-side state is handled with localStorage (the favorites feature persists across sessions), and interactivity is built with ES6 classes throughout — no jQuery or external JS libraries.
 
 ## Running locally
 The site uses ES6 modules, so it must be served over HTTP, not opened directly as a file:// page — for example, with the Live Server extension in VS Code (right-click index.html → "Open with Live Server").
@@ -74,6 +74,8 @@ Beyond the initial pages, Claude Code was also used to build several additional 
 The 20 drink entries in `data/drinks.js` were drafted with AI assistance from real, sourced facts, and then reviewed and edited by me.
 
 ### Sample prompts
+
+These are the actual prompts I sent during development. Some reflect earlier plans that changed as the project evolved — for example, the drink entries were later AI-drafted, and the API key was committed for the static deploy rather than gitignored.
 
 **Prompt 1 — building the Browse page:**
 > Build the Browse page (drinks.html) for Counter Brew. It renders coffee drinks as cards from the local data in data/drinks.js and lets the user filter them client-side.
