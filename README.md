@@ -26,12 +26,12 @@ Counter Brew is a small website about café-style coffee drinks that can be made
 
 The site has two distinct halves:
 
-- **Browse** — a curated catalogue of 20 coffee drinks I selected and wrote up myself, each with attributes (brew method, milk, temperature, sweetness, strength, equipment) and step-by-step home instructions. The page supports client-side filtering by brew method, temperature, milk, and sweetness, with a live result count.
+- **Browse** — a curated catalogue of 20 coffee drinks, each with attributes (brew method, milk, temperature, sweetness, strength, equipment) and step-by-step home instructions. The page supports client-side filtering by brew method, temperature, milk, and sweetness, with a live result count. It also includes a favorites system: drinks can be starred, favorites persist across sessions via `localStorage`, a "show favorites only" toggle filters the grid to saved drinks, and a live counter shows the total. A curated **tutorials section** links to hand-picked YouTube videos, with a jump link near the top for quick access.
 - **Explore** — a live search of the Spoonacular recipe API (search, pagination, recipe-detail modal, and loading/error/empty states).
 
-A **Home** page introduces the concept, links to both sections, and features a few sample drinks.
+The **Home** page introduces the concept and links to both sections. It features sample drink cards that **deep-link** directly to a specific drink's instructions on Browse, a rotating **random coffee facts** widget, and a section of hand-picked coffee introductory videos. The navigation bar on Home is transparent so the hero image shows through behind it.
 
-### Project context file (CLAUDE.md)
+## Project context file (CLAUDE.md)
 
 To keep the AI-generated code consistent across a long project, I maintained a `CLAUDE.md` file at the repository root. Claude Code reads this file automatically at the start of every session, so I did not have to re-explain the project each time. It documented the site's architecture (the split between the curated Browse data and the live Explore API), the technical constraints (ES6 classes, no jQuery, Bootstrap 5 and Flexbox, custom CSS loaded after Bootstrap, lowercase folder names, static-only with no backend), the coffee colour-palette approach, the drink data schema, and the intended page structure and feature split. Keeping these standing rules in one file that the tool read every session kept the generated code aligned with my decisions and reduced repeated mistakes — for example, it is where I documented the lowercase-folder rule after the casing issue described above, so the tool would stop reintroducing it.
 
@@ -52,11 +52,12 @@ It is implemented as a **sticky footer** using a Flexbox column layout on the pa
 - Google Fonts (Fraunces for headings, Nunito Sans for body)
 - Spoonacular API for live data
 - Deployed on GitHub Pages
+Client-side state is handled with localStorage (the favorites feature persists across sessions), and interactivity is built with ES6 classes throughout — no jQuery or external JS libraries.
 
 ## Running locally
 The site uses ES6 modules, so it must be served over HTTP, not opened directly as a file:// page — for example, with the Live Server extension in VS Code (right-click index.html → "Open with Live Server").
 The Spoonacular API key is included in js/config.js, so the site works on clone with no additional setup.
-Note: because this is a static, backend-less site, the API key is committed to the repository and visible in the browser. This is an accepted constraint for a client-side project on a static host; the key carries no billing and is limited to a free daily quota.
+Note: because this is a static, backend-less site, the API key is committed to the repository and visible in the browser. This is an accepted constraint for a client-side project on a static host; the key carries no billing and is limited to a **free daily quota**.
 
 ## AI-use appendix
 
@@ -66,6 +67,7 @@ I used AI tools during this project, disclosed here honestly and specifically.
 
 - **Claude** (chat) — project planning and scoping, evaluating and choosing the concept and the API, researching real facts (ratios, origins, methods) for the drink entries, and help debugging issues as they came up.
 - **Claude Code** — generating and editing most of the page code (the shared navbar and sticky footer, the Browse page cards and filtering, the Explore page and its Spoonacular integration, the Home page, and the visual-polish styling). I reviewed every implementation plan and every diff before approving, and made all commits myself.
+Beyond the initial pages, Claude Code was also used to build several additional front-end features, which I reviewed and tested before committing: the favorites system (localStorage persistence, star toggles, a show-favorites-only filter, and a live counter), the coffee-facts widget, the curated YouTube tutorial sections, and the deep-linking from the Home featured cards to specific drinks on the Browse page.
 - **ChatGPT** — edited a hero background image based on a source image I provided (it did not create the image from scratch).
 - **Canva AI** — generated the logo.
 
