@@ -86,7 +86,7 @@ counter-brew/
 
 - **Serve over http, not `file://`.** ES6 modules and `fetch` fail on double-click. Use VS Code Live Server in dev.
 - **Lowercase folder names** (`css/`, `js/`) — GitHub Pages runs on Linux and is case-sensitive; uppercase paths break the live site even though they work on Windows.
-- **Commit discipline is graded.** Small, meaningful, descriptive commits across the whole period — never one bulk commit near the deadline.
+- **Commit discipline is graded.** Small, meaningful, descriptive commits across the whole period.
 - **Originality is checked.** Near-identical projects are flagged; keep code and content original.
 - **Evidence:** screenshots at mobile, tablet, desktop widths go in the repo.
 
