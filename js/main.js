@@ -1,5 +1,13 @@
-import { drinks }    from '../data/drinks.js';
-import { DrinkList } from './DrinkList.js';
+import { drinks }       from '../data/drinks.js';
+import { coffeeFacts }  from '../data/coffeeFacts.js';
+import { DrinkList }    from './DrinkList.js';
+import { CoffeeFacts }  from './CoffeeFacts.js';
+
+// Home page — coffee fact card
+const coffeeFactEl = document.getElementById('coffee-fact-card');
+if (coffeeFactEl) {
+  new CoffeeFacts(coffeeFactEl, coffeeFacts).init();
+}
 
 // Home page — render featured drink cards
 const featuredEl = document.getElementById('home-featured');

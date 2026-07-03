@@ -314,6 +314,43 @@ main a:focus {
   transform: translateY(-2px);
 }
 
+/* ─── Home page — coffee fact card ───────────────────────────────────────── */
+.coffee-fact-card {
+  max-width: 34rem;
+  background-color: var(--cb-latte);
+  border: 1px solid var(--cb-espresso-rim);
+  border-radius: 0.75rem;
+  padding: 1.75rem 1.5rem;
+}
+
+.coffee-fact-card__icon {
+  font-size: 1.75rem;
+  color: var(--cb-caramel);
+  margin-bottom: 0.5rem;
+}
+
+.coffee-fact-card__text {
+  font-family: var(--cb-font-heading);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--cb-espresso);
+  margin-bottom: 1rem;
+}
+
+.coffee-fact-card__btn {
+  background-color: var(--cb-mocha);
+  color: var(--cb-cream);
+  border: 1px solid var(--cb-mocha);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.coffee-fact-card__btn:hover,
+.coffee-fact-card__btn:focus {
+  background-color: var(--cb-espresso);
+  border-color: var(--cb-espresso);
+  color: var(--cb-cream);
+  transform: translateY(-2px);
+}
+
 /* ─── Home page — section rhythm ─────────────────────────────────────────── */
 .site-section {
   padding: 4rem 1rem;
