@@ -565,6 +565,47 @@ main a:focus {
   margin-top: 0.25rem;
 }
 
+/* ─── Browse page — favorites ────────────────────────────────────────────── */
+.drink-card__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.drink-fav-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0.1rem 0.25rem;
+  line-height: 1;
+  font-size: 1.25rem;
+  color: var(--cb-espresso);
+}
+
+.drink-fav-btn i {
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+/* Hover on a non-favorited star: light caramel tint + scale, distinct from the
+   solid espresso fill used once a drink is actually favorited. */
+.drink-fav-btn:not(.is-favorited):hover i,
+.drink-fav-btn:not(.is-favorited):focus i {
+  color: var(--cb-caramel);
+  transform: scale(1.15);
+}
+
+.drink-fav-btn.is-favorited i {
+  color: var(--cb-espresso);
+}
+
+.favorites-count {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cb-mocha);
+}
+
 /* ─── Result count ───────────────────────────────────────────────────────── */
 .result-count {
   font-size: 0.875rem;

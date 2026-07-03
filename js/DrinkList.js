@@ -1,13 +1,18 @@
+import { FavoritesStore } from './FavoritesStore.js';
+
 export class DrinkList {
   #container;
   #countEl;
+  #favCountEl;
   #drinks;
-  #filters = { temp: 'all', brewMethod: 'all', milk: 'all', sweetness: 'all' };
+  #favorites = new FavoritesStore();
+  #filters = { temp: 'all', brewMethod: 'all', milk: 'all', sweetness: 'all', favoritesOnly: false };
 
   constructor(containerEl, allDrinks) {
-    this.#container = containerEl;
-    this.#countEl   = document.getElementById('result-count');
-    this.#drinks    = allDrinks;
+    this.#container  = containerEl;
+    this.#countEl    = document.getElementById('result-count');
+    this.#favCountEl = document.getElementById('favorites-count');
+    this.#drinks     = allDrinks;
   }
 
   init() {
@@ -19,18 +24,42 @@ export class DrinkList {
       .addEventListener('change', e => { this.#filters.milk = e.target.value; this.#render(); });
     document.getElementById('filter-sweetness')
       .addEventListener('change', e => { this.#filters.sweetness = e.target.value; this.#render(); });
+    document.getElementById('filter-favorites-only')
+      .addEventListener('change', e => { this.#filters.favoritesOnly = e.target.checked; this.#render(); });
     document.getElementById('filter-reset')
       .addEventListener('click', () => this.#resetFilters());
+    this.#container
+      .addEventListener('click', e => this.#handleFavoriteClick(e));
+    this.#updateFavoritesCount();
     this.#render();
   }
 
   #resetFilters() {
-    this.#filters = { temp: 'all', brewMethod: 'all', milk: 'all', sweetness: 'all' };
-    document.getElementById('filter-temp').value        = 'all';
-    document.getElementById('filter-brewMethod').value  = 'all';
-    document.getElementById('filter-milk').value        = 'all';
-    document.getElementById('filter-sweetness').value   = 'all';
+    this.#filters = { temp: 'all', brewMethod: 'all', milk: 'all', sweetness: 'all', favoritesOnly: false };
+    document.getElementById('filter-temp').value          = 'all';
+    document.getElementById('filter-brewMethod').value    = 'all';
+    document.getElementById('filter-milk').value          = 'all';
+    document.getElementById('filter-sweetness').value     = 'all';
+    document.getElementById('filter-favorites-only').checked = false;
     this.#render();
+  }
+
+  #handleFavoriteClick(e) {
+    const btn = e.target.closest('.drink-fav-btn');
+    if (!btn) return;
+    this.#toggleFavorite(btn.dataset.id);
+  }
+
+  #toggleFavorite(id) {
+    this.#favorites.toggle(id);
+    this.#updateFavoritesCount();
+    this.#render();
+  }
+
+  #updateFavoritesCount() {
+    const count = this.#favorites.count();
+    this.#favCountEl.innerHTML =
+      `<i class="bi bi-star-fill"></i> ${count} favorite${count === 1 ? '' : 's'}`;
   }
 
   #applyFilters() {
@@ -40,6 +69,7 @@ export class DrinkList {
       if (this.#filters.milk === 'none' && d.milk !== 'none') return false;
       if (this.#filters.milk === 'some' && d.milk === 'none') return false;
       if (this.#filters.sweetness !== 'all' && d.sweetness !== this.#filters.sweetness) return false;
+      if (this.#filters.favoritesOnly && !this.#favorites.isFavorite(d.id)) return false;
       return true;
     });
   }
@@ -49,6 +79,8 @@ export class DrinkList {
     const tempLabel = drink.temp === 'hot' ? 'Hot' : 'Iced';
     const strengthLabel = drink.strength.charAt(0).toUpperCase() + drink.strength.slice(1) + ' brew';
     const steps = drink.method.map(s => `<li>${s}</li>`).join('');
+    const isFavorited = this.#favorites.isFavorite(drink.id);
+    const starIcon = isFavorited ? 'bi-star-fill' : 'bi-star';
 
     return `
       <div class="col drink-card-enter" style="animation-delay:${index * 35}ms">
@@ -60,7 +92,16 @@ export class DrinkList {
             <span class="badge drink-badge--strength">${strengthLabel}</span>
           </div>
           <div class="card-body">
-            <h5 class="card-title">${drink.name}</h5>
+            <div class="drink-card__title-row">
+              <h5 class="card-title mb-0">${drink.name}</h5>
+              <button type="button"
+                      class="drink-fav-btn${isFavorited ? ' is-favorited' : ''}"
+                      data-id="${drink.id}"
+                      aria-pressed="${isFavorited}"
+                      aria-label="${isFavorited ? 'Remove from favorites' : 'Add to favorites'}">
+                <i class="bi ${starIcon}"></i>
+              </button>
+            </div>
             <dl class="drink-attrs">
               <dt>Brew method</dt> <dd>${drink.brewMethod}</dd>
               <dt>Milk</dt>        <dd>${drink.milk}</dd>
@@ -95,11 +136,14 @@ export class DrinkList {
     this.#countEl.classList.add('result-count--flash');
 
     if (filtered.length === 0) {
+      const heading = this.#filters.favoritesOnly
+        ? 'No favorite drinks match these filters.'
+        : 'No drinks match your filters.';
       this.#container.innerHTML = `
         <div class="col-12 drink-card-enter">
           <div class="empty-state text-center py-5">
             <i class="bi bi-cup-hot empty-state__icon d-block mb-3"></i>
-            <p class="lead mb-1">No drinks match your filters.</p>
+            <p class="lead mb-1">${heading}</p>
             <p class="text-muted mb-0">Try adjusting or resetting the filters above.</p>
           </div>
         </div>`;

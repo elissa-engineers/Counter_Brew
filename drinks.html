@@ -88,13 +88,21 @@
         </select>
       </div>
 
+      <div class="filter-group form-check form-switch align-self-end pb-2">
+        <input class="form-check-input" type="checkbox" role="switch" id="filter-favorites-only">
+        <label class="form-check-label" for="filter-favorites-only">Show favorites only</label>
+      </div>
+
       <button id="filter-reset" class="btn btn-sm btn-outline-secondary align-self-end">
         Reset filters
       </button>
 
     </div>
 
-    <p id="result-count" class="result-count mb-3"></p>
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+      <p id="result-count" class="result-count mb-0"></p>
+      <p id="favorites-count" class="favorites-count mb-0"></p>
+    </div>
 
     <div id="drink-grid" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       <!-- DrinkList renders cards here -->
