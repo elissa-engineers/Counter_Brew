@@ -21,6 +21,10 @@
   --cb-navbar-height: 76px;     /* 60px logo + Bootstrap's default 0.5rem navbar padding-y (top+bottom) */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* ─── Sticky footer via Flexbox column ───────────────────────────────────────
    The body becomes a full-viewport column flex container.
    <main> takes flex: 1 so it stretches to fill whatever height is left over
@@ -442,7 +446,28 @@ main a:focus {
   color: var(--cb-espresso);
 }
 
+/* ─── Browse page — jump to tutorials ────────────────────────────────────── */
+.jump-to-tutorials {
+  font-size: 0.9rem;
+  color: var(--cb-mocha);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--cb-mocha);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.jump-to-tutorials:hover,
+.jump-to-tutorials:focus {
+  color: var(--cb-caramel);
+  border-color: var(--cb-caramel);
+}
+
 /* ─── Browse page — tutorials section ───────────────────────────────────── */
+/* scroll-margin-top clears the navbar height so the "Tutorials" heading
+   isn't hidden underneath it when jumped to via #tutorials. */
+#tutorials {
+  scroll-margin-top: var(--cb-navbar-height);
+}
+
 .tutorial-card {
   border: 1px solid var(--cb-espresso-rim);
   color: inherit;
