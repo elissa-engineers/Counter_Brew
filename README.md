@@ -2,8 +2,8 @@
 
 Café drinks you can make on your kitchen counter — no espresso machine required.
 
-**Live site:** https://kalse3.github.io/Counter_Brew/
-**Repository:** https://github.com/kalse3/Counter_Brew
+**Live site:** [https://kalse3.github.io/Counter_Brew/](https://elissa-engineers.github.io/Counter_Brew/)
+**Repository:** https://github.com/elissa-engineers/Counter_Brew
 
 ## Author
 
